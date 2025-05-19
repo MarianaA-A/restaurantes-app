@@ -1,12 +1,13 @@
 import React from 'react'
-import { restaurantsData } from '../data'
 
-const Home = () => {
+const Home = ({ restaurants }) => {
   return (
     <div className="bg-gradient-to-br from-yellow-100 via-pink-100 to-red-100 font-sans min-h-screen w-full">
       <h2 className="text-4xl font-serif font-bold text-center mb-12 text-gray-800 pt-8">🍷 Restaurantes Destacados</h2>
+      <br />
+      <br />
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 px-4 pb-8">
-        {restaurantsData.map((rest) => (
+        {restaurants.map((rest) => (
           <div key={rest.id} className="relative bg-white/30 backdrop-blur-md border border-white/50 rounded-3xl shadow-xl p-6 flex flex-col items-center text-center hover:scale-105 hover:shadow-2xl transition-all duration-300">
             <div className="absolute -top-12 w-24 h-24 rounded-full overflow-hidden border-4 border-white shadow-lg">
               <img src={rest.image} alt={rest.name} className="object-cover w-full h-full" />

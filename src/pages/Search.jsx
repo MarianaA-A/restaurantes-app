@@ -1,34 +1,7 @@
 import React, { useState } from 'react';
 
-const Search = () => {
+const Search = ({ restaurants }) => {
     const [searchTerm, setSearchTerm] = useState('');
-
-    const restaurants = [
-        {
-            name: "El Retiro del Sabor",
-            description: "Una experiencia única de sabores en un ambiente acogedor.",
-            address: "CL 45 CR 25 -16",
-            image: "https://fastly.picsum.photos/id/42/3456/2304.jpg?hmac=dhQvd1Qp19zg26MEwYMnfz34eLnGv8meGk_lFNAJR3g",
-            category: "Gourmet",
-            rating: 5
-        },
-        {
-            name: "Raíz & Vanguardia",
-            description: "Platos tradicionales con un toque moderno e innovador.",
-            address: "Circ 5 Cl 16 -32",
-            image: "https://fastly.picsum.photos/id/163/2000/1333.jpg?hmac=htdHeSJwlYOxS8b0TTpz2s8tD_QDlmsd3JHYa_HGrg8",
-            category: "Fusión",
-            rating: 4
-        },
-        {
-            name: "Corte & Aroma",
-            description: "Delicias gourmet en un entorno elegante y exclusivo.",
-            address: "Cr 79 Cl 20 A -94",
-            image: "https://fastly.picsum.photos/id/431/5000/3334.jpg?hmac=T2rL_gBDyJYpcr1Xm8Kv7L6bhwvmZS8nKT5w3ok58kA",
-            category: "Steakhouse",
-            rating: 5
-        }
-    ];
 
     const filteredRestaurants = restaurants.filter((restaurant) =>
         restaurant.name.toLowerCase().includes(searchTerm.toLowerCase())
