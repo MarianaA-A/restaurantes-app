@@ -6,7 +6,9 @@ const NewRestaurant = ({ restaurants, addRestaurant, editRestaurant, deleteResta
         name: '',
         description: '',
         address: '',
-        image: ''
+        image: '',
+        rating: 0,
+        type: ''
     });
 
     const [selectedId, setSelectedId] = useState('');
@@ -23,7 +25,9 @@ const NewRestaurant = ({ restaurants, addRestaurant, editRestaurant, deleteResta
                 name: '',
                 description: '',
                 address: '',
-                image: ''
+                image: '',
+                rating: 0,
+                type: ''
             });
         }
     }, [selectedId, restaurants]);
@@ -32,14 +36,14 @@ const NewRestaurant = ({ restaurants, addRestaurant, editRestaurant, deleteResta
         const { name, value } = e.target;
         setFormData({
             ...formData,
-            [name]: value
+            [name]: name === 'rating' ? parseInt(value) : value
         });
     };
 
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        if (!formData.name || !formData.description || !formData.address || !formData.image) {
+        if (!formData.name || !formData.description || !formData.address || !formData.image || !formData.rating || !formData.type) {
             alert('Por favor completa todos los campos.');
             return;
         }
@@ -64,7 +68,6 @@ const NewRestaurant = ({ restaurants, addRestaurant, editRestaurant, deleteResta
 
     return (
         <div className="bg-gradient-to-br from-yellow-100 via-pink-100 to-red-100 font-sans min-h-screen">
-
             <div className="container mx-auto p-4">
                 <h2 className="text-3xl font-bold text-center mb-10"> 🍽 Administrar Restaurantes</h2>
 
@@ -83,6 +86,7 @@ const NewRestaurant = ({ restaurants, addRestaurant, editRestaurant, deleteResta
                             ))}
                         </select>
                     </div>
+
                     <form className="space-y-6" onSubmit={handleSubmit}>
                         <div>
                             <label htmlFor="name" className="block text-gray-800 font-semibold mb-1">Nombre</label>
@@ -134,6 +138,43 @@ const NewRestaurant = ({ restaurants, addRestaurant, editRestaurant, deleteResta
                                 placeholder="https://example.com/imagen.jpg"
                                 className="w-full p-3 rounded-xl border border-gray-300 shadow-sm focus:outline-none focus:ring-2 focus:ring-pink-400 transition"
                             />
+                        </div>
+
+                        <div>
+                            <label htmlFor="rating" className="block text-gray-800 font-semibold mb-1">Calificación (1 a 5 estrellas)</label>
+                            <select
+                                id="rating"
+                                name="rating"
+                                value={formData.rating}
+                                onChange={handleChange}
+                                className="w-full p-3 rounded-xl border border-gray-300 shadow-sm focus:outline-none focus:ring-2 focus:ring-pink-400 transition"
+                            >
+                                <option value={0}>Selecciona una calificación</option>
+                                {[1, 2, 3, 4, 5].map((star) => (
+                                    <option key={star} value={star}>
+                                        {'★'.repeat(star) + '☆'.repeat(5 - star)} ({star})
+                                    </option>
+                                ))}
+                            </select>
+                        </div>
+
+                        <div>
+                            <label htmlFor="type" className="block text-gray-800 font-semibold mb-1">Tipo de Restaurante</label>
+                            <select
+                                id="type"
+                                name="type"
+                                value={formData.type}
+                                onChange={handleChange}
+                                className="w-full p-3 rounded-xl border border-gray-300 shadow-sm focus:outline-none focus:ring-2 focus:ring-pink-400 transition"
+                            >
+                                <option value="">Selecciona un tipo</option>
+                                <option value="Colombiana">Colombiana</option>
+                                <option value="Mexicana">Mexicana</option>
+                                <option value="Italiana">Italiana</option>
+                                <option value="Rápida">Comida Rápida</option>
+                                <option value="Vegetariana">Vegetariana</option>
+                                <option value="Internacional">Internacional</option>
+                            </select>
                         </div>
 
                         <div className="space-y-4 mt-8 flex flex-col gap-4">

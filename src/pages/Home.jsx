@@ -1,10 +1,19 @@
+// Importamos React y un componente especial llamado Slider que sirve para hacer carruseles (como una galería que se desliza)
 import React from 'react';
 import Slider from 'react-slick';
+
+// Importamos los datos de los restaurantes desde otro archivo
 import { restaurantsData } from '../data';
+
+// Importamos los estilos necesarios para que el carrusel se vea bien
 import "slick-carousel/slick/slick.css"; 
 import "slick-carousel/slick/slick-theme.css";
 
+// Este es el componente principal de la pantalla de inicio
+// Si no se pasan restaurantes desde otro lugar, usamos los de restaurantsData
 const Home = ({ restaurants = restaurantsData }) => {
+
+  // Configuraciones del carrusel
   const settings = {
     dots: true,
     infinite: true,
@@ -33,29 +42,61 @@ const Home = ({ restaurants = restaurantsData }) => {
     ]
   };
 
+  // Función para asignar color por categoría
+  const getCategoryClasses = (category) => {
+    switch (category) {
+      case 'Gourmet':
+        return 'bg-red-100 text-red-600';
+      case 'Tradicional':
+        return 'bg-green-100 text-green-600';
+      default:
+        return 'bg-blue-100 text-blue-600';
+    }
+  };
+
   return (
     <div className="bg-gradient-to-br from-yellow-100 via-pink-100 to-red-100 font-sans min-h-screen w-full p-8">
-      <h2 className="text-4xl font-serif font-bold text-center mb-12 text-gray-800 pt-8">🍷 Restaurantes Destacados</h2>
-      <Slider {...settings}>
-        {restaurants.map((rest) => (
-          <div key={rest.id} className="px-4">
-            <div className="bg-white/30 backdrop-blur-md border border-white/50 rounded-3xl shadow-xl p-6 flex flex-col items-center text-center hover:scale-105 hover:shadow-2xl transition-all duration-300" style={{ minHeight: '28rem' }}>
-              <div className="w-24 h-24 rounded-full overflow-hidden border-4 border-white shadow-lg mb-4">
-                <img src={rest.image} alt={rest.name} className="object-cover w-full h-full" />
+
+      {/* Título */}
+      <h2 className="text-4xl font-serif font-bold text-center mb-12 text-gray-800 pt-8">
+        🍷 Restaurantes Destacados
+      </h2>
+
+      {/* Contenedor del carrusel con overflow visible */}
+      <div className="relative overflow-visible">
+        <Slider {...settings}>
+          {restaurants.map((rest) => (
+            <div key={rest.id} className="px-4 overflow-visible">
+              <div
+                className="relative bg-white/30 backdrop-blur-md border border-white/50 rounded-3xl shadow-xl p-6 flex flex-col items-center text-center hover:scale-105 hover:shadow-2xl transition-all duration-300 overflow-visible"
+                style={{ minHeight: '34rem' }} // <-- más altura para evitar corte
+              >
+
+                {/* Imagen sobresaliente */}
+                <div className="absolute -top-16 left-1/2 transform -translate-x-1/2 w-28 h-28 rounded-full overflow-hidden border-4 border-white shadow-lg">
+                  <img src={rest.image} alt={rest.name} className="object-cover w-full h-full" />
+                </div>
+
+                {/* Contenido de la tarjeta */}
+                <div className="mt-20">
+                  <h3 className="text-2xl font-serif font-bold mb-2 text-gray-900">{rest.name}</h3>
+
+                  <div className="flex justify-center gap-1 text-yellow-400 mb-2">
+                    {'⭐'.repeat(rest.rating)}
+                  </div>
+
+                  <span className={`inline-block ${getCategoryClasses(rest.category)} text-xs font-semibold px-3 py-1 rounded-full mb-3`}>
+                    {rest.category}
+                  </span>
+
+                  <p className="text-gray-700 mb-3">{rest.description}</p>
+                  <p className="text-gray-800 text-sm"><strong>📍 Dirección:</strong> {rest.address}</p>
+                </div>
               </div>
-              <h3 className="text-2xl font-serif font-bold mb-2 text-gray-900">{rest.name}</h3>
-              <div className="flex justify-center gap-1 text-yellow-400 mb-2">
-                {'⭐'.repeat(rest.rating)}
-              </div>
-              <span className={`inline-block bg-${rest.category === 'Gourmet' ? 'red' : rest.category === 'Tradicional' ? 'green' : 'blue'}-100 text-${rest.category === 'Gourmet' ? 'red' : rest.category === 'Tradicional' ? 'green' : 'blue'}-600 text-xs font-semibold px-3 py-1 rounded-full mb-3`}>
-                {rest.category}
-              </span>
-              <p className="text-gray-700 mb-3">{rest.description}</p>
-              <p className="text-gray-800 text-sm"><strong>📍 Dirección:</strong> {rest.address}</p>
             </div>
-          </div>
-        ))}
-      </Slider>
+          ))}
+        </Slider>
+      </div>
     </div>
   );
 };
