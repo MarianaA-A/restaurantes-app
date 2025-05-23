@@ -1,2 +1,8 @@
 @import "tailwindcss";
- 
+/* Permite que la imagen sobresalga del slide */
+.slick-slide > div {
+  overflow: visible !important;
+}
+.slick-list {
+  overflow: visible !important;
+}

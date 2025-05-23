@@ -58,7 +58,7 @@ const Home = ({ restaurants = restaurantsData }) => {
     <div className="bg-gradient-to-br from-yellow-100 via-pink-100 to-red-100 font-sans min-h-screen w-full p-8">
 
       {/* Título */}
-      <h2 className="text-4xl font-serif font-bold text-center mb-12 text-gray-800 pt-8">
+      <h2 className="text-4xl font-serif font-bold text-center mb-28 text-gray-800 pt-8">
         🍷 Restaurantes Destacados
       </h2>
 
@@ -68,17 +68,17 @@ const Home = ({ restaurants = restaurantsData }) => {
           {restaurants.map((rest) => (
             <div key={rest.id} className="px-4 overflow-visible">
               <div
-                className="relative bg-white/30 backdrop-blur-md border border-white/50 rounded-3xl shadow-xl p-6 flex flex-col items-center text-center hover:scale-105 hover:shadow-2xl transition-all duration-300 overflow-visible"
-                style={{ minHeight: '34rem' }} // <-- más altura para evitar corte
+                className="relative bg-white/30 backdrop-blur-md border border-white/50 rounded-3xl shadow-xl pt-12 pb-6 px-6 flex flex-col items-center text-center hover:scale-105 hover:shadow-2xl transition-all duration-300"
+                style={{ minHeight: '20rem' }} // <-- más altura para evitar corte
               >
 
                 {/* Imagen sobresaliente */}
-                <div className="absolute -top-16 left-1/2 transform -translate-x-1/2 w-28 h-28 rounded-full overflow-hidden border-4 border-white shadow-lg">
+                <div className="absolute -top-16 left-1/2 transform -translate-x-1/2 w-28 h-28 rounded-full overflow-hidden border-4 border-white shadow-lg z-10">
                   <img src={rest.image} alt={rest.name} className="object-cover w-full h-full" />
                 </div>
 
                 {/* Contenido de la tarjeta */}
-                <div className="mt-20">
+                <div className="flex flex-col items-center justify-center flex-grow">
                   <h3 className="text-2xl font-serif font-bold mb-2 text-gray-900">{rest.name}</h3>
 
                   <div className="flex justify-center gap-1 text-yellow-400 mb-2">
