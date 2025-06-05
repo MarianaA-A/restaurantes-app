@@ -13,11 +13,21 @@ const NewRestaurant = ({ restaurants, addRestaurant, editRestaurant, deleteResta
 
     const [selectedId, setSelectedId] = useState('');
 
+    const [selectedName, setSelectedName] = useState('');
+
     useEffect(() => {
-        if (selectedId !== '') {
-            const restaurant = restaurants.find((r) => r.id === parseInt(selectedId));
+        if (selectedName !== '') {
+            const restaurant = restaurants.find((r) => r.name === selectedName);
             if (restaurant) {
-                setFormData(restaurant);
+                setFormData({
+                    id: restaurant.id || null,
+                    name: restaurant.name || '',
+                    description: restaurant.description || '',
+                    address: restaurant.address || '',
+                    image: restaurant.image || '',
+                    rating: restaurant.rating || 0,
+                    type: restaurant.type || ''
+                });
             }
         } else {
             setFormData({
@@ -30,7 +40,7 @@ const NewRestaurant = ({ restaurants, addRestaurant, editRestaurant, deleteResta
                 type: ''
             });
         }
-    }, [selectedId, restaurants]);
+    }, [selectedName, restaurants]);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -76,13 +86,13 @@ const NewRestaurant = ({ restaurants, addRestaurant, editRestaurant, deleteResta
                         <label htmlFor="restaurantSelect" className="block text-gray-800 font-semibold mb-2">Seleccionar Restaurante para Editar o Eliminar</label>
                         <select
                             id="restaurantSelect"
-                            value={selectedId}
-                            onChange={(e) => setSelectedId(e.target.value)}
+                            value={selectedName}
+                            onChange={(e) => setSelectedName(e.target.value)}
                             className="w-full p-3 rounded-xl border border-gray-300 shadow-sm focus:outline-none focus:ring-2 focus:ring-pink-400 transition"
                         >
                             <option value="">Nuevo Restaurante</option>
                             {restaurants.map((r) => (
-                                <option key={r.id} value={r.id}>{r.name}</option>
+                                <option key={r.id} value={r.name}>{r.name}</option>
                             ))}
                         </select>
                     </div>
