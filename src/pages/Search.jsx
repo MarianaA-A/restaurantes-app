@@ -64,7 +64,7 @@ const Search = ({ restaurants }) => {
 
                                     {/* Tipo de comida o categoría */}
                                     <span className="inline-block bg-red-100 text-red-600 text-xs font-semibold px-3 py-1 rounded-full mb-3">
-                                        {restaurant.category}
+                                        {restaurant.type}
                                     </span>
 
                                     {/* Descripción breve del restaurante */}

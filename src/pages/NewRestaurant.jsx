@@ -192,7 +192,7 @@ const NewRestaurant = ({ restaurants, addRestaurant, editRestaurant, deleteResta
                                 type="submit"
                                 className="w-full bg-gradient-to-r from-gray-300 to-red-100 text-black text-lg font-semibold py-3 rounded-xl shadow-md hover:brightness-110 transition"
                             >
-                                {formData.id === null ? '➕ Guardar Restaurante' : '✏️ Editar Restaurante'}
+                                {formData.id === null ? '➕ Guardar Restaurante' : '✏ Editar Restaurante'}
                             </button>
                             {formData.id !== null && (
                                 <button
@@ -211,4 +211,4 @@ const NewRestaurant = ({ restaurants, addRestaurant, editRestaurant, deleteResta
     );
 };
 
-export default NewRestaurant;
+export default NewRestaurant;

@@ -68,12 +68,12 @@ const Home = ({ restaurants = restaurantsData }) => {
           {restaurants.map((rest) => (
             <div key={rest.id} className="px-4 overflow-visible">
               <div
-                className="relative bg-white/30 backdrop-blur-md border border-white/50 rounded-3xl shadow-xl pt-12 pb-6 px-6 flex flex-col items-center text-center hover:scale-105 hover:shadow-2xl transition-all duration-300"
+                className="relative flex justify-center bg-white/30 backdrop-blur-md border border-white/50 rounded-3xl shadow-xl pt-12 pb-6 px-6 flex flex-col items-center text-center hover:scale-105 hover:shadow-2xl transition-all duration-300"
                 style={{ minHeight: '20rem' }} // <-- más altura para evitar corte
               >
 
                 {/* Imagen sobresaliente */}
-                <div className="absolute -top-16 left-1/2 transform -translate-x-1/2 w-28 h-28 rounded-full overflow-hidden border-4 border-white shadow-lg z-10">
+                <div className="absolute -top-16 left-1/2 -translate-x-1/2 w-28 h-28 rounded-full overflow-hidden border-4 border-white shadow-lg z-10">
                   <img src={rest.image} alt={rest.name} className="object-cover w-full h-full" />
                 </div>
 
@@ -85,8 +85,8 @@ const Home = ({ restaurants = restaurantsData }) => {
                     {'⭐'.repeat(rest.rating)}
                   </div>
 
-                  <span className={`inline-block ${getCategoryClasses(rest.category)} text-xs font-semibold px-3 py-1 rounded-full mb-3`}>
-                    {rest.category}
+                  <span className={`inline-block ${getCategoryClasses(rest.type)} text-xs font-semibold px-3 py-1 rounded-full mb-3`}>
+                    Tipo: {rest.type}
                   </span>
 
                   <p className="text-gray-700 mb-3">{rest.description}</p>
