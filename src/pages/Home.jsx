@@ -85,7 +85,7 @@ const Home = ({ restaurants = restaurantsData }) => {
                     {'⭐'.repeat(rest.rating)}
                   </div>
 
-                  <span className={`inline-block ${getCategoryClasses(rest.type)} text-xs font-semibold px-3 py-1 rounded-full mb-3`}>
+                  <span className={`inline-block ${getCategoryClasses(rest.category)} text-xs font-semibold px-3 py-1 rounded-full mb-3`}>
                     Tipo: {rest.type}
                   </span>
 
