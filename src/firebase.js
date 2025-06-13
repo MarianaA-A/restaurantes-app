@@ -2,13 +2,13 @@ import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyA93io86rFHzmx2c5V256l9k83qwcIeRyk",
-  authDomain: "proyectorestaurantes-cd714.firebaseapp.com",
-  projectId: "proyectorestaurantes-cd714",
-  storageBucket: "proyectorestaurantes-cd714.firebasestorage.app",
-  messagingSenderId: "123164512618",
-  appId: "1:123164512618:web:4e80b77610c999949f1513",
-  measurementId: "G-PFVXLXV7RF"
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
+  appId: import.meta.env.VITE_FIREBASE_APP_ID,
+  measurementId: import.meta.env.VITE_FIREBASE_MEASUREMENT_ID
 };
 
 // Initialize Firebase
